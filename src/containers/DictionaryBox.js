@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 // Connect axios
 import axios from "axios";
 
+import AOS from "aos";
+
 // Connect react-bootstrap
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -28,8 +30,9 @@ export const DictionaryBox = props => {
     setWord(event.target.value);
   };
 
-  const handleSubmit = () => {
-    console.log("hello");
+  const handleSubmit = event => {
+    // console.log("hello");
+    event.preventDefault();
     axios
       .get(
         `https://mashape-community-urban-dictionary.p.rapidapi.com/define?term=${word}`,
@@ -45,20 +48,22 @@ export const DictionaryBox = props => {
         console.log(err);
       });
   };
-  //   useEffect(() => {
-  //     handleSubmit();
-  //   }, []);
+  useEffect(() => {
+    AOS.init({
+      //   once: false
+    });
+  });
 
   return (
     <>
       <section>
         <Container className="">
           <Row className="">
-            <Col className="text-center">
+            <Col className="text-center" data-aos="fade-up">
               <h1>Urban Dictionary</h1>
             </Col>
           </Row>
-          <Form className="form" onClick={handleSubmit}>
+          <Form className="form" onSubmit={handleSubmit}>
             <Row className="text-center">
               <Col className="">
                 <input
@@ -68,17 +73,17 @@ export const DictionaryBox = props => {
                   placeholder="Enter any word what you want..."
                   onChange={handleChange}
                 />
-                <Button variant="outline-primary" className="">
+                <Button variant="outline-primary" className="" type="submit">
                   Find words
                 </Button>
               </Col>
             </Row>
           </Form>
-          <p>{word}</p>
+          {/* <p>{word}</p> */}
           <Row className="cards-box">
             {wordCard.map(card => (
-              <Col key={card.defid}>
-                <div className="card-item">
+              <Col className="" key={card.defid}>
+                <div className="card-item" data-aos="fade-left">
                   <p>{card.definition}</p>
                   <p>{card.word}</p>
                 </div>

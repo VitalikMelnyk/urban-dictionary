@@ -6,6 +6,10 @@
 
 .cards-box.row {
   flex-direction: column;
+  align-items: center;
+}
+.cards-box.row  .col {
+    max-width: fit-content;
 }
 
 .card-item {
