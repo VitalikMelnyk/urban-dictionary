@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/core": "7.8.4",
+    "@fortawesome/fontawesome-free": "^5.12.1",
     "@svgr/webpack": "4.3.3",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -32,6 +33,7 @@
     "eslint-plugin-react": "7.18.0",
     "eslint-plugin-react-hooks": "^1.6.1",
     "file-loader": "4.3.0",
+    "font-awesome": "^4.7.0",
     "fs-extra": "^8.1.0",
     "html-webpack-plugin": "4.0.0-beta.11",
     "identity-obj-proxy": "3.0.0",

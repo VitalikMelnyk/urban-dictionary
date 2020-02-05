@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 
 // Connect axios
 import axios from "axios";
-
 import AOS from "aos";
 
 // Connect react-bootstrap
@@ -11,37 +10,48 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-
+// connect other files
 import "./DictionaryBox.css";
-
-const URBAN_KEY = {
-  headers: {
-    "x-rapidapi-key": "fd7f461f40mshb035cc0f7e57873p193233jsna5e723db7381"
-  }
-};
+import { URBAN_KEY, URL_API } from "../shared/constants";
 
 export const DictionaryBox = props => {
-  const [wordCard, setWordCard] = useState([]);
-  const [word, setWord] = useState("");
+  const [wordCards, setWordCards] = useState([]);
+  const [cardDescription, setCardDescription] = useState([]);
+  const [inputWord, setInputWord] = useState("");
+  const [isAdditionalContent, setIsAdditionalContent] = useState(false);
+  const {
+    definition,
+    permalink,
+    author,
+    word,
+    written_on: written,
+    example
+  } = cardDescription;
 
   const handleChange = event => {
     // event.preventDefault();
     console.log(event.target.value);
-    setWord(event.target.value);
+    setInputWord(event.target.value);
   };
 
+  const openDescriptionContent = content => {
+    // console.log(content);
+    setCardDescription(content);
+    console.log(cardDescription);
+    setIsAdditionalContent(true);
+  };
+  const closeDescriptionContent = () => {
+    setIsAdditionalContent(false);
+  };
   const handleSubmit = event => {
     // console.log("hello");
     event.preventDefault();
     axios
-      .get(
-        `https://mashape-community-urban-dictionary.p.rapidapi.com/define?term=${word}`,
-        URBAN_KEY
-      )
+      .get(`${URL_API}/define?term=${inputWord}`, URBAN_KEY)
       .then(res => {
         console.log(res.data.list);
         const data = res.data.list;
-        setWordCard(data);
+        setWordCards(data);
         // console.log(wordCard);
       })
       .catch(err => {
@@ -56,10 +66,10 @@ export const DictionaryBox = props => {
 
   return (
     <>
-      <section>
+      <section className="urban">
         <Container className="">
           <Row className="">
-            <Col className="text-center" data-aos="fade-up">
+            <Col className="text-center urban-title" data-aos="fade-up">
               <h1>Urban Dictionary</h1>
             </Col>
           </Row>
@@ -73,24 +83,59 @@ export const DictionaryBox = props => {
                   placeholder="Enter any word what you want..."
                   onChange={handleChange}
                 />
-                <Button variant="outline-primary" className="" type="submit">
+                <Button variant="outline-success" className="" type="submit">
                   Find words
                 </Button>
               </Col>
             </Row>
           </Form>
-          {/* <p>{word}</p> */}
-          <Row className="cards-box">
-            {wordCard.map(card => (
-              <Col className="" key={card.defid}>
-                <div className="card-item" data-aos="fade-left">
-                  <p>{card.definition}</p>
-                  <p>{card.word}</p>
+          {/* <p>{inputWord}</p> */}
+          <Row className="cards-box no-gutters">
+            {wordCards.map(card => (
+              <Col className="" key={card.defid} data-aos="fade-left">
+                <div
+                  className="card-item"
+                  onClick={() => openDescriptionContent(card)}
+                >
+                  <h3 className="card-item-title">{card.word}</h3>
+                  <p className="card-item-definition">{card.definition}</p>
                 </div>
               </Col>
             ))}
           </Row>
         </Container>
+        <div className={isAdditionalContent ? "open" : "hidden"}>
+          <div className="card-description">
+            <h3 className="text-center card-description-title">{word}</h3>
+            <div className="card-description-inner">
+              <p>
+                <span>Definition: </span>
+                {definition}
+              </p>
+              <p>
+                <span>Example: </span>
+                {example}
+              </p>
+              <p>
+                <span>Author: </span>
+                {author}
+              </p>
+              <p>
+                <span>Date: </span>
+                {written}
+              </p>
+              {/* <i class="fas fa-thumbs-up"></i> */}
+            </div>
+          </div>
+
+          <Button
+            variant="outline-success"
+            className="close-button"
+            onClick={closeDescriptionContent}
+          >
+            Close
+          </Button>
+        </div>
       </section>
     </>
   );
