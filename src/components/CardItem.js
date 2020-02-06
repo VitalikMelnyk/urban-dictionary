@@ -23,7 +23,7 @@ export const CardItem = ({ array, openDescriptionContent }) => {
       ) : (
         <Col className="" data-aos="fade-left">
           <div className="card-item card-item-nothing">
-            <p className="text-center">There aren't any word what you want</p>
+            <p className="text-center">There aren't any word what you want!</p>
           </div>
         </Col>
       )}

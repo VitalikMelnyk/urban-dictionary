@@ -15,7 +15,7 @@ import { CardItem } from "../components/CardItem";
 import { CardDescription } from "../components/CardDescription";
 
 // connect other files
-import "./DictionaryBox.css";
+import "./DictionaryBox.scss";
 import { URBAN_KEY, URL_API } from "../shared/constants";
 
 export const DictionaryBox = props => {
@@ -48,7 +48,6 @@ export const DictionaryBox = props => {
         const data = res.data.list;
         setWordCards(data);
         setIsLoading(false);
-        // console.log(wordCard);
       })
       .catch(err => {
         console.log(err);
@@ -75,11 +74,19 @@ export const DictionaryBox = props => {
             </Row>
           )}
         </Container>
-        <div className={isAdditionalContent ? "open" : "hidden"}>
-          <CardDescription
-            object={cardDescription}
-            closeDescriptionContent={closeDescriptionContent}
-          />
+        <div
+          className={
+            isAdditionalContent
+              ? "card-description-container-open"
+              : "card-description-container-close"
+          }
+        >
+          <div className="card-description-box">
+            <CardDescription
+              object={cardDescription}
+              closeDescriptionContent={closeDescriptionContent}
+            />
+          </div>
         </div>
       </section>
     </>
