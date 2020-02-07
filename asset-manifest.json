@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.d63a0f5e.chunk.css",
-    "main.js": "/static/js/main.5030236d.chunk.js",
-    "main.js.map": "/static/js/main.5030236d.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.bdf7e765.js",
-    "runtime-main.js.map": "/static/js/runtime-main.bdf7e765.js.map",
-    "static/css/2.cbf16948.chunk.css": "/static/css/2.cbf16948.chunk.css",
-    "static/js/2.ff65a31e.chunk.js": "/static/js/2.ff65a31e.chunk.js",
-    "static/js/2.ff65a31e.chunk.js.map": "/static/js/2.ff65a31e.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.46f40b15c091d26d450f11cec6838fba.js": "/precache-manifest.46f40b15c091d26d450f11cec6838fba.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.cbf16948.chunk.css.map": "/static/css/2.cbf16948.chunk.css.map",
-    "static/css/main.d63a0f5e.chunk.css.map": "/static/css/main.d63a0f5e.chunk.css.map",
-    "static/js/2.ff65a31e.chunk.js.LICENSE.txt": "/static/js/2.ff65a31e.chunk.js.LICENSE.txt"
+    "main.css": "/urban-dictionary/static/css/main.d63a0f5e.chunk.css",
+    "main.js": "/urban-dictionary/static/js/main.d95b4d78.chunk.js",
+    "main.js.map": "/urban-dictionary/static/js/main.d95b4d78.chunk.js.map",
+    "runtime-main.js": "/urban-dictionary/static/js/runtime-main.f463d9c3.js",
+    "runtime-main.js.map": "/urban-dictionary/static/js/runtime-main.f463d9c3.js.map",
+    "static/css/2.cbf16948.chunk.css": "/urban-dictionary/static/css/2.cbf16948.chunk.css",
+    "static/js/2.ff65a31e.chunk.js": "/urban-dictionary/static/js/2.ff65a31e.chunk.js",
+    "static/js/2.ff65a31e.chunk.js.map": "/urban-dictionary/static/js/2.ff65a31e.chunk.js.map",
+    "index.html": "/urban-dictionary/index.html",
+    "precache-manifest.c7e015bd7ff6d7720c313e8c58d7ce1c.js": "/urban-dictionary/precache-manifest.c7e015bd7ff6d7720c313e8c58d7ce1c.js",
+    "service-worker.js": "/urban-dictionary/service-worker.js",
+    "static/css/2.cbf16948.chunk.css.map": "/urban-dictionary/static/css/2.cbf16948.chunk.css.map",
+    "static/css/main.d63a0f5e.chunk.css.map": "/urban-dictionary/static/css/main.d63a0f5e.chunk.css.map",
+    "static/js/2.ff65a31e.chunk.js.LICENSE.txt": "/urban-dictionary/static/js/2.ff65a31e.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.bdf7e765.js",
+    "static/js/runtime-main.f463d9c3.js",
     "static/css/2.cbf16948.chunk.css",
     "static/js/2.ff65a31e.chunk.js",
     "static/css/main.d63a0f5e.chunk.css",
-    "static/js/main.5030236d.chunk.js"
+    "static/js/main.d95b4d78.chunk.js"
   ]
 }
