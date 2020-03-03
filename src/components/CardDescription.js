@@ -24,7 +24,6 @@ export const CardDescription = ({ object, closeDescriptionContent }) => {
             <span>Date: </span>
             {written}
           </p>
-          {/* <i class="fas fa-thumbs-up"></i> */}
         </div>
       </div>
 

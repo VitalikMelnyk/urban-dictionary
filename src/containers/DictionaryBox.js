@@ -13,7 +13,6 @@ import { FormInput } from "../components/FormInput";
 import { Spinners } from "../components/Spinners";
 import { CardItem } from "../components/CardItem";
 import { CardDescription } from "../components/CardDescription";
-
 // connect other files
 import "./DictionaryBox.scss";
 import { URBAN_KEY, URL_API } from "../shared/constants";
