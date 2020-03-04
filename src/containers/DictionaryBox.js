@@ -27,7 +27,7 @@ export const DictionaryBox = props => {
     inputWord,
     isAdditionalContent,
     isLoading,
-    cardDescription
+    cardDescription,
   } = useSelector(state => state);
   const dispatch = useDispatch();
   console.log(inputWord);
@@ -57,37 +57,35 @@ export const DictionaryBox = props => {
   });
 
   return (
-    <>
-      <section className="urban">
-        <Container className="">
-          <AppTitle title="Urban Dictionary" />
-          <FormInput handleChange={handleChange} handleSubmit={handleSubmit} />
-          {isLoading ? (
-            <Spinners />
-          ) : (
-            <Row className="cards-box no-gutters">
-              <CardItem
-                array={wordCards}
-                openDescriptionContent={openDescriptionContent}
-              />
-            </Row>
-          )}
-        </Container>
-        <div
-          className={
-            isAdditionalContent
-              ? "card-description-container-open"
-              : "card-description-container-close"
-          }
-        >
-          <div className="card-description-box">
-            <CardDescription
-              object={cardDescription}
-              closeDescriptionContent={closeDescriptionContent}
+    <section className="urban">
+      <Container className="">
+        <AppTitle title="Urban Dictionary" />
+        <FormInput handleChange={handleChange} handleSubmit={handleSubmit} />
+        {isLoading ? (
+          <Spinners />
+        ) : (
+          <Row className="cards-box no-gutters">
+            <CardItem
+              array={wordCards}
+              openDescriptionContent={openDescriptionContent}
             />
-          </div>
+          </Row>
+        )}
+      </Container>
+      <div
+        className={
+          isAdditionalContent
+            ? "card-description-container-open"
+            : "card-description-container-close"
+        }
+      >
+        <div className="card-description-box">
+          <CardDescription
+            object={cardDescription}
+            closeDescriptionContent={closeDescriptionContent}
+          />
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };

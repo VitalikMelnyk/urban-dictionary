@@ -3,9 +3,7 @@ import {
   SET_INPUT_WORD,
   SET_CARD_DESCRIPTION,
   SET_IS_ADDITIONAL_CONTENT,
-  FETCH_DATA_PENDING,
-  FETCH_DATA_SUCCESS,
-  FETCH_DATA_ERROR
+  FETCH_DATA
 } from "./actionTypes";
 import { URL_API, URBAN_KEY } from "../shared/constants";
 
@@ -24,32 +22,51 @@ export const setIsAdditionalContent = payload => ({
   payload
 });
 
-export const fetchDataPending = payload => ({
-  type: FETCH_DATA_PENDING,
-  payload
-});
-export const fetchDataSuccess = payload => ({
-  type: FETCH_DATA_SUCCESS,
-  payload
-});
-export const fetchDataError = payload => ({
-  type: FETCH_DATA_ERROR,
-  payload
-});
+// export const fetchDataPending = () => ({
+//   type: FETCH_DATA_PENDING
+// });
+
+// export const fetchDataSuccess = payload => ({
+//   type: FETCH_DATA_SUCCESS,
+//   payload
+// });
+// export const fetchDataError = payload => ({
+//   type: FETCH_DATA_ERROR,
+//   payload
+// });
+
+export const actionCreator = (type, action, dispatch) => {
+  dispatch({ type: `${type}_PENDING` });
+  action
+    .then(res => {
+      console.log(res.data.list);
+      const data = res.data;
+      dispatch({ type: `${type}_SUCCESS`, payload: data });
+    })
+    .catch(err => {
+      console.log(err);
+      dispatch({ type: `${type}_ERROR`, payload: err });
+    });
+};
 
 export const fetchData = inputWord => {
-  return dispatch => {
-    dispatch(fetchDataPending());
-    axios
-      .get(`${URL_API}/define?term=${inputWord}`, URBAN_KEY)
-      .then(res => {
-        console.log(res.data.list);
-        const data = res.data.list;
-        dispatch(fetchDataSuccess(data));
-      })
-      .catch(err => {
-        console.log(err);
-        dispatch(fetchDataError(err));
-      });
-  };
+  const action = axios.get(`${URL_API}/define?term=${inputWord}`, URBAN_KEY)
+  return dispatch => actionCreator(FETCH_DATA, action, dispatch);
 };
+
+// export const fetchData = inputWord => {
+//   return dispatch => {
+//     dispatch(fetchDataPending());
+//     axios
+//       .get(`${URL_API}/define?term=${inputWord}`, URBAN_KEY)
+//       .then(res => {
+//         console.log(res.data.list);
+//         const data = res.data.list;
+//         dispatch(fetchDataSuccess(data));
+//       })
+//       .catch(err => {
+//         console.log(err);
+//         dispatch(fetchDataError(err));
+//       });
+//   };
+// };
