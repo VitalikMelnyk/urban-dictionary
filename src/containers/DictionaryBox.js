@@ -1,57 +1,57 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 // Connect axios
-import axios from "axios";
 import AOS from "aos";
-
 // Connect react-bootstrap
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+// Redux files
+import {
+  setInputWord,
+  setCardDescription,
+  setIsAdditionalContent,
+  fetchData
+} from "../store/actions";
 
+// connect other files
 import { AppTitle } from "../components/AppTitle";
 import { FormInput } from "../components/FormInput";
 import { Spinners } from "../components/Spinners";
 import { CardItem } from "../components/CardItem";
 import { CardDescription } from "../components/CardDescription";
-// connect other files
 import "./DictionaryBox.scss";
-import { URBAN_KEY, URL_API } from "../shared/constants";
 
 export const DictionaryBox = props => {
-  const [wordCards, setWordCards] = useState([]);
-  const [inputWord, setInputWord] = useState("");
-  const [isAdditionalContent, setIsAdditionalContent] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [cardDescription, setCardDescription] = useState({});
+  const {
+    wordCards,
+    inputWord,
+    isAdditionalContent,
+    isLoading,
+    cardDescription
+  } = useSelector(state => state);
+  const dispatch = useDispatch();
+  console.log(inputWord);
 
   const handleChange = event => {
-    console.log(event.target.value);
-    setInputWord(event.target.value);
+    const inputValue = event.target.value;
+    dispatch(setInputWord(inputValue));
   };
 
   const openDescriptionContent = content => {
-    setCardDescription(content);
+    dispatch(setCardDescription(content));
     console.log(cardDescription);
-    setIsAdditionalContent(true);
+    dispatch(setIsAdditionalContent(true));
   };
+
   const closeDescriptionContent = () => {
-    setIsAdditionalContent(false);
+    dispatch(setIsAdditionalContent(false));
   };
+
   const handleSubmit = event => {
-    setIsLoading(true);
     event.preventDefault();
-    axios
-      .get(`${URL_API}/define?term=${inputWord}`, URBAN_KEY)
-      .then(res => {
-        console.log(res.data.list);
-        const data = res.data.list;
-        setWordCards(data);
-        setIsLoading(false);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    dispatch(fetchData(inputWord));
   };
+
   useEffect(() => {
     AOS.init();
   });
