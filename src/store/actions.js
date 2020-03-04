@@ -22,24 +22,10 @@ export const setIsAdditionalContent = payload => ({
   payload
 });
 
-// export const fetchDataPending = () => ({
-//   type: FETCH_DATA_PENDING
-// });
-
-// export const fetchDataSuccess = payload => ({
-//   type: FETCH_DATA_SUCCESS,
-//   payload
-// });
-// export const fetchDataError = payload => ({
-//   type: FETCH_DATA_ERROR,
-//   payload
-// });
-
 export const actionCreator = (type, action, dispatch) => {
   dispatch({ type: `${type}_PENDING` });
   action
     .then(res => {
-      console.log(res.data.list);
       const data = res.data;
       dispatch({ type: `${type}_SUCCESS`, payload: data });
     })
@@ -50,23 +36,6 @@ export const actionCreator = (type, action, dispatch) => {
 };
 
 export const fetchData = inputWord => {
-  const action = axios.get(`${URL_API}/define?term=${inputWord}`, URBAN_KEY)
+  const action = axios.get(`${URL_API}/define?term=${inputWord}`, URBAN_KEY);
   return dispatch => actionCreator(FETCH_DATA, action, dispatch);
 };
-
-// export const fetchData = inputWord => {
-//   return dispatch => {
-//     dispatch(fetchDataPending());
-//     axios
-//       .get(`${URL_API}/define?term=${inputWord}`, URBAN_KEY)
-//       .then(res => {
-//         console.log(res.data.list);
-//         const data = res.data.list;
-//         dispatch(fetchDataSuccess(data));
-//       })
-//       .catch(err => {
-//         console.log(err);
-//         dispatch(fetchDataError(err));
-//       });
-//   };
-// };

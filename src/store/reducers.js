@@ -28,7 +28,7 @@ export const rootReducer = (state = initialState, { type, payload }) => {
     case FETCH_DATA_PENDING:
       return { ...state, isLoading: true };
     case FETCH_DATA_SUCCESS:
-      return { ...state, isLoading: false, wordCards: payload.list};
+      return { ...state, isLoading: false, wordCards: payload.list };
     case FETCH_DATA_ERROR:
       return { ...state, isLoading: false, error: payload };
     default:
